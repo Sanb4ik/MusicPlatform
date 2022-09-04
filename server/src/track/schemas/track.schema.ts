@@ -13,13 +13,16 @@ export class Track {
   artist: string;
 
   @Prop()
+  text: string;
+
+  @Prop()
   track: string;
 
   @Prop()
   listens: number;
 
   @Prop()
-  piture: string;
+  picture: string;
 
   @Prop()
   audio: string;
