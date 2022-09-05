@@ -16,6 +16,7 @@ import { FileFieldsInterceptor } from '@nestjs/platform-express';
 import { CreateTrackDto } from './dto/create-track.dto';
 import { TracksService } from './tracks.service';
 import { Track } from './schemas/track.schema';
+import { ObjectId } from 'mongoose';
 
 @Controller('tracks')
 export class TracksController {
@@ -46,6 +47,12 @@ export class TracksController {
       const {picture, audio} = files;
             return this.trackService.create(dto, picture[0], audio[0])
   }
+
+  @Post('/listen/:id')
+  listen(@Param('id') id: ObjectId){
+    return this.trackService.listen(id)
+  }
+
 
   @Delete(':id')
   remove(@Param('id') id: string): Promise<Track> {

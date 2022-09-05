@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+//import { Model, ObjectId } from 'mongoose';
+import * as mongoose from 'mongoose';
 import { FileService, FileType } from '../file/file.service';
 import { CreateTrackDto } from './dto/create-track.dto';
 import { Track, TrackDocument } from './schemas/track.schema';
@@ -8,31 +9,37 @@ import { Track, TrackDocument } from './schemas/track.schema';
 
 @Injectable()
 export class TracksService {
-  constructor(@InjectModel(Track.name) private TrackModel: Model<TrackDocument>,
+  constructor(@InjectModel(Track.name) private trackModel: mongoose.Model<TrackDocument>,
               private fileService: FileService) {
   }
 
   async getAll(): Promise<Track[]> {
-    return this.TrackModel.find().exec()
+    return this.trackModel.find().exec()
   }
 
   async getById(id: string): Promise<Track> {
-    return this.TrackModel.findById(id)
+    return this.trackModel.findById(id)
   }
 
 
   async create(dto: CreateTrackDto, picture, audio): Promise<Track> {
     const audioPath = this.fileService.createFile(FileType.AUDIO, audio);
     const piturePath = this.fileService.createFile(FileType.IMAGE, picture );
-    const track = await this.TrackModel.create({...dto, listens: 0, audio: audioPath, picture: piturePath});
+    const track = await this.trackModel.create({...dto, listens: 0, audio: audioPath, picture: piturePath});
     return track.save()
   }
 
   async remove(id: string): Promise<Track> {
-    return this.TrackModel.findByIdAndRemove(id)
+    return this.trackModel.findByIdAndRemove(id)
   }
 
   async update(id: string, productDto: CreateTrackDto): Promise<Track> {
-    return this.TrackModel.findByIdAndUpdate(id, productDto, {new: true})
+    return this.trackModel.findByIdAndUpdate(id, productDto, {new: true})
+  }
+
+  async listen(id: mongoose.ObjectId){
+    const track = await this.trackModel.findById(id)
+    track.listens += 1
+    //await this.trackModel.updateOne(this.listen, track)
   }
 }
