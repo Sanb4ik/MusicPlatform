@@ -13,8 +13,14 @@ export class TracksService {
               private fileService: FileService) {
   }
 
-  async getAll(): Promise<Track[]> {
-    return this.trackModel.find().exec()
+  async getAll(count= 10, offset = 0){
+    return this.trackModel.find().skip(offset).limit(count);
+  }
+
+  async search(query: string): Promise<Track[]>{
+    return await this.trackModel.find({
+      name: {$regex: new RegExp(query, 'i')}
+    });
   }
 
   async getById(id: string): Promise<Track> {
@@ -25,8 +31,11 @@ export class TracksService {
   async create(dto: CreateTrackDto, picture, audio): Promise<Track> {
     const audioPath = this.fileService.createFile(FileType.AUDIO, audio);
     const piturePath = this.fileService.createFile(FileType.IMAGE, picture );
-    const track = await this.trackModel.create({...dto, listens: 0, audio: audioPath, picture: piturePath});
-    return track.save()
+   // console.log(await  this.trackModel.find({name:dto.name, artist: dto.artist }).length)
+    if((await this.trackModel.find({name:dto.name, artist: dto.artist })).length <2){
+      const track = await this.trackModel.create({...dto, listens: 0, audio: audioPath, picture: piturePath});
+      return track.save()
+    }
   }
 
   async remove(id: string): Promise<Track> {
@@ -40,6 +49,7 @@ export class TracksService {
   async listen(id: mongoose.ObjectId){
     const track = await this.trackModel.findById(id)
     track.listens += 1
-    //await this.trackModel.updateOne(this.listen, track)
+    track.save()
+    // this.trackModel.updateOne(this.listen, track)
   }
 }

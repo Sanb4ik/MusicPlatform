@@ -11,12 +11,15 @@ import {
   Put,
   UploadedFiles,
   UseInterceptors,
+  Query
 } from '@nestjs/common';
 import { FileFieldsInterceptor } from '@nestjs/platform-express';
 import { CreateTrackDto } from './dto/create-track.dto';
 import { TracksService } from './tracks.service';
 import { Track } from './schemas/track.schema';
 import { ObjectId } from 'mongoose';
+import { query } from 'express';
+
 
 @Controller('tracks')
 export class TracksController {
@@ -25,8 +28,14 @@ export class TracksController {
   }
 
   @Get()
-  getAll(): Promise<Track[]> {
-    return this.trackService.getAll()
+  getAll(@Query('count') count: number,
+        @Query('offset') offset: number) {
+    return this.trackService.getAll(count, offset)
+  }
+
+  @Get('/search')
+  search(@Query('query') query: string) {
+    return this.trackService.search(query)
   }
 
   @Get(':id')
