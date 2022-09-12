@@ -1,0 +1,61 @@
+.container {
+  padding: 0 0;
+  background-color:rgb(162, 218, 255);
+  display: grid;
+  grid-template-areas: 'sidebar content'
+                       'player player';
+  grid-template-columns: 20% 80%;
+  min-height: 100vh;
+}
+
+.sidebar {
+  grid-area: sidebar;
+  background-color: blue;
+  min-height: 90vh;
+}
+
+.content {
+  grid-area: content;
+  background-color: rgb(255, 0, 221);
+  min-height: 90vh;
+}
+
+.player{
+  grid-area: player;
+  background-color:red;
+  min-height: 10vh;
+}
+
+.main {
+  min-height: 100vh;
+  padding: 4rem 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.code {
+  background: #fafafa;
+  border-radius: 5px;
+  padding: 0.75rem;
+  font-size: 1.1rem;
+  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+    Bitstream Vera Sans Mono, Courier New, monospace;
+}
+
+@media (max-width: 600px) {
+  .container {
+    grid-template-areas: 'content content'
+                         'player player'
+                         'sidebar sidebar';
+    min-height: 100vh;
+  }
+  .player{
+    min-height: 5vh;
+  }
+  .sidebar {
+    min-height: 5vh;
+  }
+}
