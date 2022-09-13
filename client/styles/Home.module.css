@@ -11,8 +11,63 @@
 /* -------------------CONTENT -------------------- */
 .content {
   grid-area: content;
+  display: grid;
+  grid-template-rows: 40% 60%;
+  grid-template-areas: 'last_tracks'
+  'playlists'
+  ;
+  gap: 5px;
   background-color: rgb(255, 0, 221);
   min-height: 90vh;
+}
+
+.last_tracks {
+  display: grid;
+  grid-area: last_tracks;
+  padding: 10px;
+  grid-template-rows: repeat(3, 10vh);
+  grid-auto-rows: 0;
+  grid-template-areas: 'title title title'
+  'track_card track_card track_card';
+  gap: 5px;
+  background-color: darkgreen;
+  overflow-x: hidden;
+  column-gap: 0;
+}
+.title{
+  display: grid;
+  padding-left: 20px;
+  grid-area: title;
+  align-content: space-around;
+  
+}
+
+.track_card {
+  margin: 0px 3px 0 3px;
+  padding-left: 10px;
+  border-radius: 5px;
+  display: grid;
+  background-color: deepskyblue;
+  overflow: hidden;
+}
+.playlists {
+  display: grid;
+  grid-area: playlists;
+  grid-template-rows: 3vh 22vh 22vh;
+  grid-template-areas: 'title title title title title title'
+  'playlist_card playlist_card playlist_card playlist_card playlist_card playlist_card';
+  gap: 10px;
+  padding: 10px;
+  background-color: chartreuse;
+  overflow-x: hidden;
+  grid-auto-rows: 0;
+}
+.playlist_card {
+  margin: 0px 3px 0 3px;
+  display: grid;
+  border-radius: 5px ;
+  background-color: rgb(80, 80, 80);
+  overflow: hidden;
 }
 /* -------------------PLAYER -------------------- */
 .player{
@@ -44,11 +99,8 @@
   grid-area: buttons;
   background-color: orange;
   min-height:min-content;
-  padding: 5px; 
-  
-  grid-template-areas: 'icon description'
-    'icon description'
-    'icon description';
+  padding: 5px;
+  grid-template-areas: 'icon description';
     grid-template-columns: 10% 90%;
 }
 .icon{
@@ -61,7 +113,15 @@
   font-size: 18px;
 }
 /* ----------------------------------------------- */
-@media (max-width: 700px) {
+@media (max-width: 1300px) {
+  .playlists {
+    
+    grid-template-areas: 'title title title title title'
+    'playlist_card playlist_card playlist_card playlist_card playlist_card';
+    overflow: hidden;
+  }
+}
+@media (max-width: 750px) {
   .container {
     grid-template-areas: 'content content'
                          'player player'
@@ -90,5 +150,22 @@
     align-content: center;
     min-height: 5vh;
   }
-  
+  .last_tracks {
+    overflow: hidden;
+    grid-template-areas: 'title title'
+    'track_card track_card';
+  }
+  .last_tracks{
+    overflow: hidden;
+  }
+  .track_card {
+    overflow: hidden;
+  }
+  .playlists {
+    
+    grid-template-areas: 'title title title'
+    'playlist_card playlist_card playlist_card';
+    overflow: hidden;
+  }
 }
+
