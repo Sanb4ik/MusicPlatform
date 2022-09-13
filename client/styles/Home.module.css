@@ -1,0 +1,94 @@
+.container {
+  padding: 0 0;
+  background-color:rgb(162, 218, 255);
+  display: grid;
+  grid-template-areas: 'sidebar content'
+                       'player player';
+  grid-template-columns: 20% 80%;
+  min-height: 100vh;
+}
+
+/* -------------------CONTENT -------------------- */
+.content {
+  grid-area: content;
+  background-color: rgb(255, 0, 221);
+  min-height: 90vh;
+}
+/* -------------------PLAYER -------------------- */
+.player{
+  grid-area: player;
+  background-color:red;
+  min-height: 10vh;
+}
+
+/* -------------------SIDEBAR -------------------- */
+.sidebar {
+  display: flex;
+  grid-area: sidebar;
+  background-color: blue;
+  flex-direction: column;
+  min-height: 90vh;
+}
+.name {
+  display: grid;
+  grid-area: name;
+  align-items: center;
+  justify-items: center;
+  background-color: yellow;
+  max-height: 10vh;
+}
+.buttons{
+  display: grid;
+  grid-auto-flow: row;
+  align-content: space-around;
+  grid-area: buttons;
+  background-color: orange;
+  min-height:min-content;
+  padding: 5px; 
+  
+  grid-template-areas: 'icon description'
+    'icon description'
+    'icon description';
+    grid-template-columns: 10% 90%;
+}
+.icon{
+  padding-top: 10px;
+}
+.description{
+  display: grid;
+  padding: 10px;
+  justify-content: start;
+  font-size: 18px;
+}
+/* ----------------------------------------------- */
+@media (max-width: 700px) {
+  .container {
+    grid-template-areas: 'content content'
+                         'player player'
+                         'sidebar sidebar';
+    min-height: 100vh;
+  }
+  .player{
+    min-height: 5vh;
+  }
+  .sidebar {
+    min-height: 5vh;
+  }
+  .name{
+    display: none;
+  }
+  .icon{
+    padding-top: 0px;
+  }
+  .description{
+    display: none;
+  }
+  .buttons{
+    grid-auto-flow: row;
+    grid-template-columns: 10% 10% 10%;
+    justify-content: space-around;
+    align-content: center;
+    min-height: 5vh;
+  }
+  
+}

@@ -6,5 +6,22 @@
   },
   "devDependencies": {
     "@types/mongoose": "^5.11.97"
-  }
+  },
+  "name": "musicplatform",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sanb4ik/MusicPlatform.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sanb4ik/MusicPlatform/issues"
+  },
+  "homepage": "https://github.com/Sanb4ik/MusicPlatform#readme",
+  "description": ""
 }
