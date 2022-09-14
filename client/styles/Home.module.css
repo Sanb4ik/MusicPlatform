@@ -71,9 +71,63 @@
 }
 /* -------------------PLAYER -------------------- */
 .player{
+  display: grid;
+  grid-template-columns: 25vw 50vw 25vw;
+  grid-template-areas: 'prewiev play_module functions';
   grid-area: player;
   background-color:red;
   min-height: 10vh;
+}
+.prewiev{
+  background-color: black;
+}
+.functions{
+  display: grid;
+  grid-template-columns: 20% 80%;
+  align-items: center;
+  justify-content: space-around;
+}
+.table{
+  padding-left: 20px;
+}
+.play_module{
+  display: grid;
+  grid-template-rows: 60% 40%;
+  grid-template-areas: 'play_buttons'
+                      'slider';
+  justify-content: center;
+  
+  background-color: blueviolet;
+  
+}
+.module_btns{
+  margin-top: 20px;
+  display: grid;
+  margin-left: 10px;
+  grid-template-columns: 10% 10% 10%;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+}
+.slider{
+  display: grid;
+  /* margin-bottom: 20px; */
+  grid-template-columns: 5vw 40vw 5vw;
+  align-items: center;
+  margin-bottom: 5px;
+}
+.functions{
+  background-color: yellow;
+}
+.l_time{
+  display: flex;
+  margin-right: 10px;
+  justify-content: flex-end;
+}
+.r_time{
+  display: flex;
+  margin-left: 15px;
+  justify-content: flex-start;
 }
 
 /* -------------------SIDEBAR -------------------- */
@@ -121,6 +175,14 @@
     overflow: hidden;
   }
 }
+@media (max-width: 1300px) {
+  .playlists {
+    
+    grid-template-areas: 'title title title title '
+    'playlist_card playlist_card playlist_card playlist_card ';
+    overflow: hidden;
+  }
+}
 @media (max-width: 750px) {
   .container {
     grid-template-areas: 'content content'
@@ -129,10 +191,11 @@
     min-height: 100vh;
   }
   .player{
-    min-height: 5vh;
+    min-height: 7vh;
   }
   .sidebar {
-    min-height: 5vh;
+
+    min-height: 3vh;
   }
   .name{
     display: none;
