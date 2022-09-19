@@ -17,7 +17,8 @@
   'playlists'
   ;
   gap: 5px;
-  background-color: rgb(255, 0, 221);
+  color:white;
+  background-color: var(--main-bg-color);
   min-height: 90vh;
 }
 
@@ -30,7 +31,7 @@
   grid-template-areas: 'title title title'
   'track_card track_card track_card';
   gap: 5px;
-  background-color: darkgreen;
+  /* background-color: darkgreen; */
   overflow-x: hidden;
   column-gap: 0;
 }
@@ -39,16 +40,22 @@
   padding-left: 20px;
   grid-area: title;
   align-content: space-around;
-  
+  max-height: 5vh ;
 }
 
 .track_card {
   margin: 0px 3px 0 3px;
-  padding-left: 10px;
+   /* padding: 3px; */
   border-radius: 5px;
   display: grid;
-  background-color: deepskyblue;
+  background-color: var(--second-bg-color);
   overflow: hidden;
+  grid-template-columns: 100px auto;
+  max-height: 100px; 
+}
+.track_card_img{
+  width: 100px;
+  height: 100px;
 }
 .playlists {
   display: grid;
@@ -58,7 +65,7 @@
   'playlist_card playlist_card playlist_card playlist_card playlist_card playlist_card';
   gap: 10px;
   padding: 10px;
-  background-color: chartreuse;
+  /* background-color: chartreuse; */
   overflow-x: hidden;
   grid-auto-rows: 0;
 }
@@ -66,7 +73,7 @@
   margin: 0px 3px 0 3px;
   display: grid;
   border-radius: 5px ;
-  background-color: rgb(80, 80, 80);
+  background-color: var(--second-bg-color);
   overflow: hidden;
 }
 /* -------------------PLAYER -------------------- */
@@ -75,11 +82,27 @@
   grid-template-columns: 25vw 50vw 25vw;
   grid-template-areas: 'prewiev play_module functions';
   grid-area: player;
-  background-color:red;
-  min-height: 10vh;
+  color:white;
+  background-color: var( --second-bg-color);
 }
 .prewiev{
-  background-color: black;
+  /* background-color: rgb(246, 241, 241); */
+  display: grid;
+  grid-template-columns: 10vh auto;
+  grid-template-areas: 'img info'
+  'img info';
+}
+.img{
+  display: grid;
+  grid-area: img;
+  /* width: 80px;
+  height: 80px; */
+}
+.info{
+  display: grid;
+  padding-left: 10px;
+  align-items: center;
+ 
 }
 .functions{
   display: grid;
@@ -87,38 +110,54 @@
   align-items: center;
   justify-content: space-around;
 }
-.table{
-  padding-left: 20px;
-}
 .play_module{
   display: grid;
   grid-template-rows: 60% 40%;
+  max-height: 8vh;
   grid-template-areas: 'play_buttons'
                       'slider';
   justify-content: center;
-  
-  background-color: blueviolet;
-  
+  /* background-color: blueviolet; */
 }
+
 .module_btns{
-  margin-top: 20px;
   display: grid;
-  margin-left: 10px;
-  grid-template-columns: 10% 10% 10%;
+  grid-template-areas: 'skip_back pause skip_next';
+  grid-template-columns: 14vw 2vw 14vw;
   justify-content: center;
   justify-items: center;
   align-items: center;
 }
+.skip_back{
+  color: white;
+  font-size: 40px;
+}
+.pause{
+  font-size: 50px;
+  color: white;
+}
+.func_btn{
+  font-size: 30px;
+  color: white;
+}
+.smart_pause{
+  display: none;
+}
+.skip_next{
+  font-size: 40px;
+  color: white;
+}
+
 .slider{
   display: grid;
-  /* margin-bottom: 20px; */
   grid-template-columns: 5vw 40vw 5vw;
   align-items: center;
   margin-bottom: 5px;
+  max-height: 2vh;
 }
-.functions{
+/* .functions{
   background-color: yellow;
-}
+} */
 .l_time{
   display: flex;
   margin-right: 10px;
@@ -134,7 +173,8 @@
 .sidebar {
   display: flex;
   grid-area: sidebar;
-  background-color: blue;
+  background-color: var(--sidebar-bg-color);
+  color: white;
   flex-direction: column;
   min-height: 90vh;
 }
@@ -143,7 +183,7 @@
   grid-area: name;
   align-items: center;
   justify-items: center;
-  background-color: yellow;
+  /* background-color: yellow; */
   max-height: 10vh;
 }
 .buttons{
@@ -151,7 +191,7 @@
   grid-auto-flow: row;
   align-content: space-around;
   grid-area: buttons;
-  background-color: orange;
+  /* background-color: orange; */
   min-height:min-content;
   padding: 5px;
   grid-template-areas: 'icon description';
@@ -169,18 +209,31 @@
 /* ----------------------------------------------- */
 @media (max-width: 1300px) {
   .playlists {
-    
     grid-template-areas: 'title title title title title'
     'playlist_card playlist_card playlist_card playlist_card playlist_card';
     overflow: hidden;
   }
+  .back{
+    align-content: end;
+  }
+  .prewiev{
+    grid-template-columns: 100px auto;
+  }
+  .img{
+    /* width: 100px;
+    height: 100px; */
+  }
 }
-@media (max-width: 1300px) {
+@media (max-width: 1000px) {
   .playlists {
-    
     grid-template-areas: 'title title title title '
     'playlist_card playlist_card playlist_card playlist_card ';
     overflow: hidden;
+  }
+  
+  .back{
+    justify-content: end;
+    justify-items: end;
   }
 }
 @media (max-width: 750px) {
@@ -189,12 +242,65 @@
                          'player player'
                          'sidebar sidebar';
     min-height: 100vh;
+    font-size: 12px;
   }
   .player{
-    min-height: 7vh;
+    /* max-height: 5vh; */
+    grid-template-columns: 40vw 60vw;
+    min-height: 3vh;
+  }
+  .play_module{
+    grid-template-rows: 100%;
+    grid-template-columns: 70% 30%;
+    min-height: auto;
+    grid-template-areas: ' slider smart_pause';
+    align-items: center;
+    justify-content: center;
+    /* background-color: blueviolet; */
+  
+  }
+  .module_btns{
+    display: none;
+  }
+  .smart_pause{
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    color: white;
+  }
+  .prewiev{
+    grid-template-columns: 50px auto;
+  }
+  .r_time{
+    display: none;
+  }
+  .l_time{
+    display: none;
+  }
+  .img{
+    /* width: 50px;
+    height: 50px; */
+  }
+  .module_btns{
+    max-height: 2vh;
+  }
+  .skip_back{
+    color: white;
+    font-size: 20px;
+  }
+  .pause{
+    font-size: 30px;
+    color: white;
+  }
+  .skip_next{
+    font-size: 20px;
+    color: white;
+  }
+  .functions{
+    display: none;
   }
   .sidebar {
-
     min-height: 3vh;
   }
   .name{
@@ -211,7 +317,7 @@
     grid-template-columns: 10% 10% 10%;
     justify-content: space-around;
     align-content: center;
-    min-height: 5vh;
+    justify-items: center;
   }
   .last_tracks {
     overflow: hidden;
@@ -222,10 +328,15 @@
     overflow: hidden;
   }
   .track_card {
+    max-height: 80px;
+    grid-template-columns: 80px auto;
     overflow: hidden;
   }
+  .track_card_img{
+    width: 80px;
+    height: 80px;
+  }
   .playlists {
-    
     grid-template-areas: 'title title title'
     'playlist_card playlist_card playlist_card';
     overflow: hidden;

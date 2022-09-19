@@ -3,6 +3,31 @@
   margin: 0;
   padding: 0;
 }
+:root{
+    /* purple */
+    /* --main-bg-color: #b388ff;
+    --second-bg-color: #7c4dff;
+    --sidebar-bg-color: #651fff; */
+
+     /* black */
+    --main-bg-color: #616161;
+    --second-bg-color: #424242;
+    --sidebar-bg-color: black; 
+
+    /* green */
+    /* --main-bg-color: #66bb6a;
+    --second-bg-color: #43a047;
+    --sidebar-bg-color: #2e7d32; */
+
+    /* blue */
+    /* --main-bg-color: #4fc3f7;
+    --second-bg-color: #0288d1;
+    --sidebar-bg-color: #01579b; */
+/* 
+    --main-bg-color: #4fc3f7;
+    --second-bg-color: #0288d1;
+    --sidebar-bg-color: #01579b; */
+}
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,

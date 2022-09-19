@@ -3,8 +3,10 @@ import styles from '../styles/Home.module.css'
 import HomeIcon from '@mui/icons-material/Home';
 import SearchIcon from '@mui/icons-material/Search';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import {useRouter} from 'next/router';
 
 const Sidebar = () => {
+  const router = useRouter()
     return (
         <div className={styles.sidebar}>
         <div className={styles.name}>

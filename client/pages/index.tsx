@@ -2,6 +2,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import Sidebar from '../components/sidebar'
+import Content from '../components/content'
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
@@ -21,7 +22,8 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Sidebar />
-      <div className={styles.content}>
+      <Content/>
+      {/* <div className={styles.content}>
         <div className={styles.last_tracks}>
           <div className={styles.title}>
             <h1>Good evening</h1>
@@ -51,21 +53,14 @@ const Home: NextPage = () => {
           <div className={styles.playlist_card}></div>
           <div className={styles.playlist_card}></div>
         </div>
-      </div>
+      </div> */}
       <div className={styles.player}>
         <div className={styles.prewiev}></div>
         <div className={styles.play_module}>
-          <div className={styles.module_btns}>
-            <SkipPreviousIcon sx={{ fontSize: "40px" }} />
-            <PlayCircleIcon sx={{ fontSize: "50px" }} />
-            <SkipNextIcon sx={{ fontSize: "40px" }} />
-          </div>
-          <div className={styles.slider}>
-            <h4 className={styles.l_time}>1:50</h4>
-            <Box sx={{ width: "40vw" }}>
-              <Slider aria-label="Small" />
-            </Box>
-            <h4 className={styles.r_time}>2:50</h4>
+        <div className={styles.module_btns}>
+            <SkipPreviousIcon className={styles.skip_back} sx={{ fontSize: "30px" }} />
+            <PlayCircleIcon className={styles.pause} sx={{ fontSize: "40px" }} />
+            <SkipNextIcon className={styles.skip_next} sx={{ fontSize: "30px", justifyContent: 'start'}} />
           </div>
         </div>
         <div className={styles.functions}>
@@ -86,7 +81,6 @@ const Home: NextPage = () => {
               sx={{ mb: 1 }}
               alignItems="center"
             >
-              {/* <LibraryBooksIcon sx={{fontSize: '50px'}}/> */}
               <VolumeUp sx={{ fontSize: "30px" }} />
               <Slider />
             </Stack>
