@@ -3,9 +3,8 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import Sidebar from '../../components/sidebar'
 import Content from '../../components/content'
-import Player from '../../components/player'
+import Player from '../../components/Player'
 import * as React from 'react';
-
 import styles from '../../styles/Home.module.css'
 import { ITrack } from '../../types/track'
 import TrackList from '../../components/TrackList'
