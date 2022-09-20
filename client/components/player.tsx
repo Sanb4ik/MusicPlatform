@@ -25,10 +25,6 @@ const Player = () => {
               alt="Picture of the author"
               width={'100vh'}
               height={'100vh'}
-              // width={500} automatically provided
-              // height={500} automatically provided
-              // blurDataURL="data:..." automatically provided
-              // placeholder="blur" // Optional blur-up while loading
             />
           </div>
           <div className={styles.info}> Antidipressant</div>
@@ -41,14 +37,6 @@ const Player = () => {
             <SkipNextIcon className={styles.skip_next} />
           </div>
           <TrackProgress left={0} right={20} onChange={()=>({})}></TrackProgress>
-          {/* <div className={styles.slider}>
-            <h4 className={styles.l_time}>1:50</h4>
-            <Box sx={{ width: "40vw" }}>
-              <Slider size="small" sx={{ color: "white" }} />
-            </Box>
-
-            <h4 className={styles.r_time}>2:50</h4>
-          </div> */}
           <div className={styles.smart_pause}>
             <PlayCircleIcon sx={{ fontSize: "40px" }} />
           </div>
@@ -65,15 +53,8 @@ const Player = () => {
             </Stack>
           </div>
           <Box sx={{ width: "80%" }}>
-            <Stack
-              spacing={2}
-              direction="row"
-              sx={{ mb: 1 }}
-              alignItems="center"
-            >
               <VolumeUp className={styles.func_btn} />
-              <Slider size="small" sx={{ color: "white" }} />
-            </Stack>
+              <TrackProgress left={0} right={20} onChange={()=>({})}></TrackProgress>
           </Box>
         </div>
       </div>
