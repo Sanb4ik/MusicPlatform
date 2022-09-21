@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from '../styles/Home.module.css'
-import HomeIcon from '@mui/icons-material/Home';
 import SearchIcon from '@mui/icons-material/Search';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import HomeIcon from '@mui/icons-material/Home';
 import {useRouter} from 'next/router';
 
 const Sidebar = () => {

@@ -36,7 +36,7 @@ const Player = () => {
             <PlayCircleIcon className={styles.pause} />
             <SkipNextIcon className={styles.skip_next} />
           </div>
-          <TrackProgress left={0} right={20} onChange={()=>({})}></TrackProgress>
+          <TrackProgress left={0} right={20} style={'slider'} onChange={()=>({})}></TrackProgress>
           <div className={styles.smart_pause}>
             <PlayCircleIcon sx={{ fontSize: "40px" }} />
           </div>
@@ -52,9 +52,19 @@ const Player = () => {
               <LibraryBooksIcon className={styles.func_btn} />
             </Stack>
           </div>
-          <Box sx={{ width: "80%" }}>
+          <Box sx={{ width: '80%'}}>
+             
+              <Stack
+              spacing={2}
+              direction="row"
+              sx={{ mb: 1 }}
+              alignItems="center"
+            >
               <VolumeUp className={styles.func_btn} />
-              <TrackProgress left={0} right={20} onChange={()=>({})}></TrackProgress>
+              <Slider/>
+              {/* <TrackProgress left={0} right={20} style={''} onChange={()=>({})}></TrackProgress> */}
+            </Stack>
+              {/* <TrackProgress left={0} right={20} width={'100px'} onChange={()=>({})}></TrackProgress> */}
           </Box>
         </div>
       </div>
