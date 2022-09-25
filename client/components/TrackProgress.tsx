@@ -7,11 +7,11 @@ import styles from '../styles/Home.module.css'
 interface TrackProgressProps{
     left:number;
     right:number;
-    style: string;
+    
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const TrackProgress: React.FC<TrackProgressProps> = ({left, right, style, onChange}) => {
+const TrackProgress: React.FC<TrackProgressProps> = ({left, right, onChange}) => {
     return (
       <div className={styles.slider} >
         <h4 className={styles.l_time}>1:50</h4>

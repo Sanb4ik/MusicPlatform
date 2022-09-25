@@ -8,9 +8,11 @@ import * as React from 'react';
 import styles from '../../styles/Home.module.css'
 import { ITrack } from '../../types/track'
 import TrackList from '../../components/TrackList'
+import { useTypedSelector } from '../../hooks/useTypedSelector'
 
 const Index = () => {
   const router = useRouter()
+  console.log({} = useTypedSelector(state => state.player))
   const tracks: ITrack[] = [
     {_id: '1', name: 'Antidepressant', artist: 'FACE', text: 'сатань мне антидепрессантом', listens:0, picture: 'http://localhost:3333/image/4637ef5a-3853-4a49-92b2-674d78f36419.png', audio: 'http://localhost/3333/audio/9e3fbd8c-f568-4f2d-9231-25d31076e03a.mp3'},
     {_id: '2', name: 'Antidepressant', artist: 'FACE', text: 'сатань мне антидепрессантом', listens:0, picture: 'http://localhost:3333/image/4637ef5a-3853-4a49-92b2-674d78f36419.png', audio: 'http://localhost/3333/audio/9e3fbd8c-f568-4f2d-9231-25d31076e03a.mp3'},
