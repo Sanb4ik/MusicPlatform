@@ -10,23 +10,39 @@ interface TrackProgressProps{
     
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
+// useEffect(() => {
+  
+//   },[left]
+// )
+const Time = (time: number)=>{
+  let minutes = Math.floor(time / 60)
+  let seconds = '0'
+  let sec = Math.ceil(time - minutes*60)
+
+  if(sec<10) seconds = '0' +sec.toString()
+  else seconds = sec.toString()
+  console.log(minutes,':', seconds)
+ return `${minutes}:${seconds}`
+}
 
 const TrackProgress: React.FC<TrackProgressProps> = ({left, right, onChange}) => {
     return (
       <div className={styles.slider} >
-        <h4 className={styles.l_time}>1:50</h4>
+        <p className={styles.l_time}>{Time(left)}</p>
         <Box>
           <Stack spacing={2} direction="row" sx={{ mb: 1 }} alignItems="center">
             <Slider
               size="small"
               sx={{ color: "white" }}
-              min={left}
+              min={0}
+              step={0.1}
+              onChange={onChange}
               max={right}
             />
           </Stack >
         </Box>
 
-        <h4 className={styles.r_time}>2:50</h4>
+        <p className={styles.r_time}>{Time(right)}</p>
       </div>
     );
 };

@@ -1,6 +1,5 @@
-import { PlayerAction } from "../../types/player";
-import { PlayerActionTypes } from "../../types/player";
+import * as PlayerActionCreators from './player'
 
-export const playTrack = (): PlayerAction =>{
-    return {type: PlayerActionTypes.PLAY}
+export default {
+    ...PlayerActionCreators
 }
