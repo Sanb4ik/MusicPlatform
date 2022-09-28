@@ -14,14 +14,15 @@ interface TrackProgressProps{
   
 //   },[left]
 // )
-const Time = (time: number)=>{
+const Time = (time: number) => {
+  console.log(time);
   let minutes = Math.floor(time / 60)
   let seconds = '0'
   let sec = Math.ceil(time - minutes*60)
 
   if(sec<10) seconds = '0' +sec.toString()
   else seconds = sec.toString()
-  console.log(minutes,':', seconds)
+  // console.log(minutes,':', seconds)
  return `${minutes}:${seconds}`
 }
 
@@ -35,7 +36,8 @@ const TrackProgress: React.FC<TrackProgressProps> = ({left, right, onChange}) =>
               size="small"
               sx={{ color: "white" }}
               min={0}
-              step={0.1}
+              value={left}
+              step={null}
               onChange={onChange}
               max={right}
             />

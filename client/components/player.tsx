@@ -17,10 +17,11 @@ import { useTypedSelector } from '../hooks/useTypedSelector';
 import { useActions } from '../hooks/useActions';
 import { chainPropTypes } from '@mui/utils';
 
-let audio;
+let audio: object;
 
 const Player = () => {
-  const track: ITrack = {_id: '1', name: 'Antidepressant', artist: 'FACE', text: 'сатань мне антидепрессантом', listens:0, picture: 'http://localhost:3333/image/4637ef5a-3853-4a49-92b2-674d78f36419.png', audio: 'http://localhost:3333/audio/ae99f18a-9b6a-4852-8154-834323dc5066.mp3'}
+  const track: ITrack[] = [{_id: '1', name: 'Antidepressant', artist: 'FACE', text: 'сатань мне антидепрессантом', listens:0, picture: 'http://localhost:3333/image/4637ef5a-3853-4a49-92b2-674d78f36419.png', audio: 'http://localhost:3333/audio/ae99f18a-9b6a-4852-8154-834323dc5066.mp3'},
+  {_id: '2', name: 'Юморист', artist: 'FACE', text: 'сатань мне антидепрессантом', listens:0, picture: 'http://localhost:3333/image/4637ef5a-3853-4a49-92b2-674d78f36419.png', audio: 'http://localhost:3333/audio/7031639a-b432-4e59-8b2b-98c6a6e337f2.mp3'}]
   // const [active, setActive] = useState(false)
   const{pause, volume, active, duration, currentTime} = useTypedSelector(state=> state.player)
   const {pauseTrack, playTrack, setVolume, setCurrentTime, setDuration, setActiveTrack} = useActions()
@@ -28,16 +29,24 @@ const Player = () => {
   useEffect(() => {
     if(!audio){
       audio = new Audio()
-      audio.src = track.audio
-      audio.volume = volume / 100
-      audio.onloadedmetadata = () => {
-        setDuration(Math.ceil(audio.duration))
-      }
-      audio.ontimeupdate = () => {
-        setCurrentTime(Math.ceil(audio.currentTime))
-      }
+    }else{
+      setAudio()
+      play()
     }
-  })
+},[active])
+
+  const setAudio = () =>{
+    if(active){
+    audio.src = active.audio
+    audio.volume = volume / 100
+    audio.onloadedmetadata = () => {
+      setDuration(Math.ceil(audio.duration))
+    }
+    audio.ontimeupdate = () => {
+      setCurrentTime(Math.ceil(audio.currentTime))
+    }
+  }
+}
 
   const play  = () => {
     if(pause){
@@ -58,14 +67,13 @@ const Player = () => {
 
   const changeCurrentTime = (e: React.ChangeEvent<HTMLInputElement>)=>{
     let time = Number(e.target.value)
-    // console.log(time)
     audio.currentTime = time
-    let minutes = Math.floor(time / 60)
-    let seconds = Math.ceil(time - minutes*60)
-    // console.log(minutes,':', seconds)
     setCurrentTime(time)
   }
 
+  if(active == null)
+    return null
+    
     return (
       <div className={styles.player}>
         <div className={styles.prewiev}>
@@ -87,7 +95,6 @@ const Player = () => {
               ? <PauseCircleIcon onClick={play} className={styles.pause} />
               : <PlayCircleIcon onClick={play} className={styles.pause} />
             }
-            {/* <PlayCircleIcon className={styles.pause} /> */}
             <SkipNextIcon className={styles.skip_next} />
           </div>
           <TrackProgress left={currentTime} right={duration} onChange={changeCurrentTime}></TrackProgress>
@@ -108,7 +115,7 @@ const Player = () => {
           </div>
           <Box sx={{ width: '80%'}}>
              
-              <Stack
+            <Stack
               spacing={2}
               direction="row"
               sx={{ mb: 1 }}
@@ -122,7 +129,7 @@ const Player = () => {
                 defaultValue={volume}
                 step={0.1}
                 max={100}
-                onChange={changeVolume}
+                onChange = {changeVolume}
               />
               {/* <TrackProgress left={0} right={20} style={''} onChange={()=>({})}></TrackProgress> */}
             </Stack>

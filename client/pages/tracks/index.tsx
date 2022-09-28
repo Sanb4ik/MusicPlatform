@@ -8,17 +8,25 @@ import * as React from 'react';
 import styles from '../../styles/Home.module.css'
 import { ITrack } from '../../types/track'
 import TrackList from '../../components/TrackList'
+import { useTypedSelector } from '../../hooks/useTypedSelector'
+import { NextThunkDispatch, wrapper } from '../../store'
+import { fetchTracks } from '../../store/action-creators/track'
+import {connect} from 'react-redux';
 
 const Index = () => {
   const router = useRouter()
-  const tracks: ITrack[] = [
-    {_id: '1', name: 'Antidepressant', artist: 'FACE', text: 'сатань мне антидепрессантом', listens:0, picture: 'http://localhost:3333/image/4637ef5a-3853-4a49-92b2-674d78f36419.png', audio: 'http://localhost:3333/audio/ae99f18a-9b6a-4852-8154-834323dc5066.mp3'},
-    {_id: '2', name: 'Antidepressant', artist: 'FACE', text: 'сатань мне антидепрессантом', listens:0, picture: 'http://localhost:3333/image/4637ef5a-3853-4a49-92b2-674d78f36419.png', audio: 'http://localhost:3333/audio/9e3fbd8c-f568-4f2d-9231-25d31076e03a.mp3'},
-    {_id: '3', name: 'Antidepressant', artist: 'FACE', text: 'сатань мне антидепрессантом', listens:0, picture: 'http://localhost:3333/image/4637ef5a-3853-4a49-92b2-674d78f36419.png', audio: 'http://localhost:3333/audio/9e3fbd8c-f568-4f2d-9231-25d31076e03a.mp3'},
-    {_id: '4', name: 'Antidepressant', artist: 'FACE', text: 'сатань мне антидепрессантом', listens:0, picture: 'http://localhost:3333/image/4637ef5a-3853-4a49-92b2-674d78f36419.png', audio: 'http://localhost:3333/audio/9e3fbd8c-f568-4f2d-9231-25d31076e03a.mp3'},
-    {_id: '5', name: 'Antidepressant', artist: 'FACE', text: 'сатань мне антидепрессантом', listens:0, picture: 'http://localhost:3333/image/4637ef5a-3853-4a49-92b2-674d78f36419.png', audio: 'http://localhost:3333/audio/9e3fbd8c-f568-4f2d-9231-25d31076e03a.mp3'},
-    {_id: '6', name: 'Antidepressant', artist: 'FACE', text: 'сатань мне антидепрессантом', listens:0, picture: 'http://localhost:3333/image/4637ef5a-3853-4a49-92b2-674d78f36419.png', audio: 'http://localhost:3333/audio/9e3fbd8c-f568-4f2d-9231-25d31076e03a.mp3'}
-  ]
+  const {tracks, error} = useTypedSelector(state => state.track)
+  if(error){
+    return null;
+  }
+  // const tracks: ITrack[] = [
+  //   {_id: '1', name: 'Antidepressant', artist: 'FACE', text: 'сатань мне антидепрессантом', listens:0, picture: 'http://localhost:3333/image/4637ef5a-3853-4a49-92b2-674d78f36419.png', audio: 'http://localhost:3333/audio/ae99f18a-9b6a-4852-8154-834323dc5066.mp3'},
+  //   {_id: '2', name: 'Antidepressant', artist: 'FACE', text: 'сатань мне антидепрессантом', listens:0, picture: 'http://localhost:3333/image/4637ef5a-3853-4a49-92b2-674d78f36419.png', audio: 'http://localhost:3333/audio/ae99f18a-9b6a-4852-8154-834323dc5066.mp3'},
+  //   {_id: '3', name: 'Antidepressant', artist: 'FACE', text: 'сатань мне антидепрессантом', listens:0, picture: 'http://localhost:3333/image/4637ef5a-3853-4a49-92b2-674d78f36419.png', audio: 'http://localhost:3333/audio/ae99f18a-9b6a-4852-8154-834323dc5066.mp3'},
+  //   {_id: '4', name: 'Antidepressant', artist: 'FACE', text: 'сатань мне антидепрессантом', listens:0, picture: 'http://localhost:3333/image/4637ef5a-3853-4a49-92b2-674d78f36419.png', audio: 'http://localhost:3333/audio/ae99f18a-9b6a-4852-8154-834323dc5066.mp3'},
+  //   {_id: '5', name: 'Antidepressant', artist: 'FACE', text: 'сатань мне антидепрессантом', listens:0, picture: 'http://localhost:3333/image/4637ef5a-3853-4a49-92b2-674d78f36419.png', audio: 'http://localhost:3333/audio/ae99f18a-9b6a-4852-8154-834323dc5066.mp3'},
+  //   {_id: '6', name: 'Antidepressant', artist: 'FACE', text: 'сатань мне антидепрессантом', listens:0, picture: 'http://localhost:3333/image/4637ef5a-3853-4a49-92b2-674d78f36419.png', audio: 'http://localhost:3333/audio/ae99f18a-9b6a-4852-8154-834323dc5066.mp3'}
+  // ]
   return (
     <div className={styles.container}>
       <Head>
@@ -53,3 +61,9 @@ const Index = () => {
 
 export default Index
 
+export const getServerSideProps = wrapper.getServerSideProps(async({store}) => {
+  const dispatchs = store.dispatch as NextThunkDispatch
+  await dispatchs(await fetchTracks())
+})
+
+export default connect((state: State) => state)(Page);
