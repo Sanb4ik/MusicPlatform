@@ -5,19 +5,27 @@ import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import PauseCircleIcon from '@mui/icons-material/PauseCircle';
 import { useRouter } from 'next/router';
 import { useActions } from '../hooks/useActions';
+import { useTypedSelector } from '../hooks/useTypedSelector';
 
 interface TrackItemProps {
     track: ITrack;
-    active?: boolean;
+    // active?: boolean;
 }
 
-const TrackItem: React.FC<TrackItemProps> = ({track, active}) => {
+const TrackItem: React.FC<TrackItemProps> = ({track}) => {
   const {pauseTrack, playTrack, setVolume, setCurrentTime, setDuration, setActiveTrack} = useActions()
-  // const{pause, volume, active, duration, currentTime} = useTypedSelector(state=> state.player)
+  const {pause, volume, active, duration, currentTime} = useTypedSelector(state=> state.player)
   const play = (e) =>{
     e.stopPropagation()
     setActiveTrack(track)
-    playTrack()
+    if(pause){
+      
+      playTrack()
+      pauseTrack()
+    }
+    else{
+      pauseTrack()
+    }
   }
   const router = useRouter()
     return (
@@ -35,7 +43,7 @@ const TrackItem: React.FC<TrackItemProps> = ({track, active}) => {
           {track.name}
         </div>
         <div onClick={play}>
-        {active
+        {pause
             ? <PauseCircleIcon/>
             : <PlayCircleIcon />
         }

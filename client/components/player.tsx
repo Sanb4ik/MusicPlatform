@@ -17,7 +17,7 @@ import { useTypedSelector } from '../hooks/useTypedSelector';
 import { useActions } from '../hooks/useActions';
 import { chainPropTypes } from '@mui/utils';
 
-let audio: object;
+var audio: object;
 
 const Player = () => {
 
@@ -28,6 +28,7 @@ const Player = () => {
     if(!audio){
       audio = new Audio()
     }else{
+      pauseTrack()
       setAudio()
       play()
     }
@@ -47,8 +48,11 @@ const Player = () => {
     }
   }
 }
+// useEffect(()=>{
+//   audio.play()
+// },[pause])
 
-  const play  = () => {
+ const play  = () => {
     if(pause){
       playTrack()
       audio.play()
@@ -80,18 +84,12 @@ const Player = () => {
       <div className={styles.player}>
         <div className={styles.prewiev}>
           <div className={styles.img}>
-            {/* <Image
-              src={'http://localhost:3333/'+active.picture}
-              alt="Picture of the author"
-              width={'100vh'}
-              height={'100vh'}
-            /> */}
             <picture >
-            <img src={'http://localhost:3333/'+active.picture} className={styles.track_card_img} />
-          </picture>
+              <img src={'http://localhost:3333/'+active.picture} className={styles.track_card_img} />
+            </picture>
           </div>
-          <div className={styles.info}> Antidipressant</div>
-          <div className={styles.info}> Face</div>
+          <div className={styles.info}>{active.name}</div>
+          <div className={styles.info}>{active.artist}</div>
         </div>
         <div className={styles.play_module}>
           <div className={styles.module_btns}>
