@@ -12,8 +12,8 @@ interface TrackItemProps {
 }
 
 const TrackItem: React.FC<TrackItemProps> = ({track, active}) => {
-  const {playTrack, pauseTrack, setActiveTrack} = useActions()
-
+  const {pauseTrack, playTrack, setVolume, setCurrentTime, setDuration, setActiveTrack} = useActions()
+  // const{pause, volume, active, duration, currentTime} = useTypedSelector(state=> state.player)
   const play = (e) =>{
     e.stopPropagation()
     setActiveTrack(track)
@@ -27,7 +27,7 @@ const TrackItem: React.FC<TrackItemProps> = ({track, active}) => {
       >
         <div>
          <picture >
-            <img src={track.picture} className={styles.track_card_img} />
+            <img src={'http://localhost:3333/'+track.picture} className={styles.track_card_img} />
           </picture>
         </div>
 

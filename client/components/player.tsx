@@ -20,9 +20,7 @@ import { chainPropTypes } from '@mui/utils';
 let audio: object;
 
 const Player = () => {
-  const track: ITrack[] = [{_id: '1', name: 'Antidepressant', artist: 'FACE', text: 'сатань мне антидепрессантом', listens:0, picture: 'http://localhost:3333/image/4637ef5a-3853-4a49-92b2-674d78f36419.png', audio: 'http://localhost:3333/audio/ae99f18a-9b6a-4852-8154-834323dc5066.mp3'},
-  {_id: '2', name: 'Юморист', artist: 'FACE', text: 'сатань мне антидепрессантом', listens:0, picture: 'http://localhost:3333/image/4637ef5a-3853-4a49-92b2-674d78f36419.png', audio: 'http://localhost:3333/audio/7031639a-b432-4e59-8b2b-98c6a6e337f2.mp3'}]
-  // const [active, setActive] = useState(false)
+
   const{pause, volume, active, duration, currentTime} = useTypedSelector(state=> state.player)
   const {pauseTrack, playTrack, setVolume, setCurrentTime, setDuration, setActiveTrack} = useActions()
 
@@ -37,9 +35,11 @@ const Player = () => {
 
   const setAudio = () =>{
     if(active){
-    audio.src = active.audio
-    audio.volume = volume / 100
-    audio.onloadedmetadata = () => {
+      console.log(active.audio)
+      audio.src = 'http://localhost:3333/'+active.audio
+
+      audio.volume = volume / 100
+      audio.onloadedmetadata = () => {
       setDuration(Math.ceil(audio.duration))
     }
     audio.ontimeupdate = () => {
@@ -67,8 +67,10 @@ const Player = () => {
 
   const changeCurrentTime = (e: React.ChangeEvent<HTMLInputElement>)=>{
     let time = Number(e.target.value)
+    console.log(time)
     audio.currentTime = time
     setCurrentTime(time)
+    console.log(currentTime)
   }
 
   if(active == null)
@@ -78,12 +80,15 @@ const Player = () => {
       <div className={styles.player}>
         <div className={styles.prewiev}>
           <div className={styles.img}>
-            <Image
-              src={antidepressant}
+            {/* <Image
+              src={'http://localhost:3333/'+active.picture}
               alt="Picture of the author"
               width={'100vh'}
               height={'100vh'}
-            />
+            /> */}
+            <picture >
+            <img src={'http://localhost:3333/'+active.picture} className={styles.track_card_img} />
+          </picture>
           </div>
           <div className={styles.info}> Antidipressant</div>
           <div className={styles.info}> Face</div>
@@ -114,7 +119,6 @@ const Player = () => {
             </Stack>
           </div>
           <Box sx={{ width: '80%'}}>
-             
             <Stack
               spacing={2}
               direction="row"
@@ -131,9 +135,7 @@ const Player = () => {
                 max={100}
                 onChange = {changeVolume}
               />
-              {/* <TrackProgress left={0} right={20} style={''} onChange={()=>({})}></TrackProgress> */}
             </Stack>
-              {/* <TrackProgress left={0} right={20} width={'100px'} onChange={()=>({})}></TrackProgress> */}
           </Box>
         </div>
       </div>

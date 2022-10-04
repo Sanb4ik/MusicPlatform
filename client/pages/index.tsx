@@ -12,6 +12,7 @@ import VolumeUp from '@mui/icons-material/VolumeUp';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
+import { wrapper } from '../store'
 
 const Home: NextPage = () => {
   return (
@@ -90,6 +91,10 @@ const Home: NextPage = () => {
     </div>
   );
 }
+
+// export const getStaticProps = wrapper.getStaticProps((store) => () => {
+//   store.dispatch(incrementCounter())
+// })
 
 export default Home
 

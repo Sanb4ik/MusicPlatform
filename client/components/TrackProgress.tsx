@@ -6,16 +6,11 @@ import styles from '../styles/Home.module.css'
 
 interface TrackProgressProps{
     left:number;
-    right:number;
-    
+    right:number; 
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
-// useEffect(() => {
-  
-//   },[left]
-// )
+
 const Time = (time: number) => {
-  console.log(time);
   let minutes = Math.floor(time / 60)
   let seconds = '0'
   let sec = Math.ceil(time - minutes*60)
@@ -37,7 +32,7 @@ const TrackProgress: React.FC<TrackProgressProps> = ({left, right, onChange}) =>
               sx={{ color: "white" }}
               min={0}
               value={left}
-              step={null}
+              step={0.000001}
               onChange={onChange}
               max={right}
             />

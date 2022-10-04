@@ -12,6 +12,7 @@ import { useTypedSelector } from '../../hooks/useTypedSelector'
 import { NextThunkDispatch, wrapper } from '../../store'
 import { fetchTracks } from '../../store/action-creators/track'
 import {connect} from 'react-redux';
+import axios from 'axios'
 
 const Index = () => {
   const router = useRouter()
@@ -59,11 +60,11 @@ const Index = () => {
   );
 }
 
+
+export const getServerSideProps = wrapper.getServerSideProps((store) => async () => {
+  const dispatch = store.dispatch as NextThunkDispatch
+    await dispatch(await fetchTracks())
+});
+
 export default Index
 
-export const getServerSideProps = wrapper.getServerSideProps(async({store}) => {
-  const dispatchs = store.dispatch as NextThunkDispatch
-  await dispatchs(await fetchTracks())
-})
-
-export default connect((state: State) => state)(Page);
