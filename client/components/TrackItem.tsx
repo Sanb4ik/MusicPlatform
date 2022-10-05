@@ -43,7 +43,7 @@ const TrackItem: React.FC<TrackItemProps> = ({track}) => {
           {track.name}
         </div>
         <div onClick={play}>
-        {pause
+        {!pause
             ? <PauseCircleIcon/>
             : <PlayCircleIcon />
         }

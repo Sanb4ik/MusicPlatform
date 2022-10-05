@@ -38,7 +38,6 @@ const Player = () => {
     if(active){
       console.log(active.audio)
       audio.src = 'http://localhost:3333/'+active.audio
-
       audio.volume = volume / 100
       audio.onloadedmetadata = () => {
       setDuration(Math.ceil(audio.duration))
@@ -48,11 +47,8 @@ const Player = () => {
     }
   }
 }
-// useEffect(()=>{
-//   audio.play()
-// },[pause])
 
- const play  = () => {
+const play  = () => {
     if(pause){
       playTrack()
       audio.play()
@@ -61,7 +57,7 @@ const Player = () => {
       pauseTrack()
       audio.pause()
     }
-  }
+}
 
   const changeVolume = (e: React.ChangeEvent<HTMLInputElement>)=>{
     let vol = Number(e.target.value)
