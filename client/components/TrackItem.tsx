@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { ITrack } from '../types/track';
 import styles from '../styles/Home.module.css'
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
@@ -16,11 +16,14 @@ const TrackItem: React.FC<TrackItemProps> = ({track}) => {
   const {pauseTrack, playTrack, setVolume, setCurrentTime, setDuration, setActiveTrack} = useActions()
   const {pause, volume, active, duration, currentTime} = useTypedSelector(state=> state.player)
 
+  const [beginPlayed, setPlayed] = useState(false)
+
   const playThisTrack = (e) =>{
+    setPlayed(!beginPlayed)
     e.stopPropagation()
     setActiveTrack(track)
-    setCurrentTime(0)
-    playTrack()
+    // setCurrentTime(0)
+    // playTrack()
   }
   const router = useRouter()
     return (
@@ -38,7 +41,7 @@ const TrackItem: React.FC<TrackItemProps> = ({track}) => {
           {track.name}
         </div>
         <div onClick={playThisTrack}>
-        {active
+        {active?.audio === track.audio
             ? <PauseCircleIcon/>
             : <PlayCircleIcon />
         }

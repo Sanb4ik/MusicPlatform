@@ -32,7 +32,7 @@ const Player = () => {
       setAudio()
       play()
     }
-},[active])
+},[active, duration])
 
 
 const setAudio = () => {
@@ -53,10 +53,12 @@ const play  = () => {
     if(pause){
       playTrack()
       audio.pause()
+      console.log("pauseTrack")
     }
     else{
       pauseTrack()
       audio.play()
+      console.log("playTrack")
       // audio.currentTime = 0
       // audio.play()
     }
@@ -73,7 +75,7 @@ const play  = () => {
     console.log(time)
     audio.currentTime = time
     setCurrentTime(time)
-    console.log(currentTime)
+    // console.log(currentTime)
   }
 
   if(active == null)
