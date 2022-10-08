@@ -15,17 +15,12 @@ interface TrackItemProps {
 const TrackItem: React.FC<TrackItemProps> = ({track}) => {
   const {pauseTrack, playTrack, setVolume, setCurrentTime, setDuration, setActiveTrack} = useActions()
   const {pause, volume, active, duration, currentTime} = useTypedSelector(state=> state.player)
-  const play = (e) =>{
+
+  const playThisTrack = (e) =>{
     e.stopPropagation()
     setActiveTrack(track)
-    if(pause){
-      
-      playTrack()
-      pauseTrack()
-    }
-    else{
-      pauseTrack()
-    }
+    setCurrentTime(0)
+    playTrack()
   }
   const router = useRouter()
     return (
@@ -42,8 +37,8 @@ const TrackItem: React.FC<TrackItemProps> = ({track}) => {
         <div style={{marginLeft:'10px'}}>
           {track.name}
         </div>
-        <div onClick={play}>
-        {!pause
+        <div onClick={playThisTrack}>
+        {active
             ? <PauseCircleIcon/>
             : <PlayCircleIcon />
         }

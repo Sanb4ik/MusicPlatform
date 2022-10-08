@@ -27,19 +27,20 @@ const Player = () => {
   useEffect(() => {
     if(!audio){
       audio = new Audio()
-    }else{
-      pauseTrack()
+    }
+    else{
       setAudio()
       play()
     }
 },[active])
 
-  const setAudio = () =>{
-    if(active){
-      console.log(active.audio)
-      audio.src = 'http://localhost:3333/'+active.audio
-      audio.volume = volume / 100
-      audio.onloadedmetadata = () => {
+
+const setAudio = () => {
+  if(active){
+    console.log(active.audio)
+    audio.src = 'http://localhost:3333/'+active.audio
+    audio.volume = volume / 100
+    audio.onloadedmetadata = () => {
       setDuration(Math.ceil(audio.duration))
     }
     audio.ontimeupdate = () => {
@@ -51,11 +52,13 @@ const Player = () => {
 const play  = () => {
     if(pause){
       playTrack()
-      audio.play()
+      audio.pause()
     }
     else{
       pauseTrack()
-      audio.pause()
+      audio.play()
+      // audio.currentTime = 0
+      // audio.play()
     }
 }
 
@@ -90,7 +93,7 @@ const play  = () => {
         <div className={styles.play_module}>
           <div className={styles.module_btns}>
             <SkipPreviousIcon className={styles.skip_back} />
-            {!pause 
+            {pause 
               ? <PauseCircleIcon onClick={play} className={styles.pause} />
               : <PlayCircleIcon onClick={play} className={styles.pause} />
             }
