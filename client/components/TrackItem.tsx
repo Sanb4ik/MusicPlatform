@@ -16,14 +16,12 @@ const TrackItem: React.FC<TrackItemProps> = ({track}) => {
   const {pauseTrack, playTrack, setVolume, setCurrentTime, setDuration, setActiveTrack} = useActions()
   const {pause, volume, active, duration, currentTime} = useTypedSelector(state=> state.player)
 
-  const [beginPlayed, setPlayed] = useState(false)
 
   const playThisTrack = (e) =>{
-    setPlayed(!beginPlayed)
     e.stopPropagation()
     setActiveTrack(track)
-    // setCurrentTime(0)
-    // playTrack()
+    if(!pause)
+      pauseTrack()
   }
   const router = useRouter()
     return (

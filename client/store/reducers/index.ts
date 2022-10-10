@@ -12,8 +12,11 @@ const rootReducer = combineReducers({
 export const reducer = (state, action) => {
     switch (action.type) {
       case HYDRATE:
-        // Attention! This will overwrite client state! Real apps should use proper reconciliation.
-        return {...state, ...action.payload};
+        
+        // const stateDiff = diff(state, action.payload) as any;
+        // const wasBumpedOnClient = stateDiff?.page?.[0]?.endsWith('X'); // or any other criteria
+        
+        return {...state, ...action.payload};// Attention! This will overwrite client state! Real apps should use proper reconciliation.
       case 'TICK':
         return {...state, tick: action.payload};
       default:
