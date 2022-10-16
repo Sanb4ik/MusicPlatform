@@ -12,7 +12,7 @@ import VolumeUp from '@mui/icons-material/VolumeUp';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
-import { wrapper } from '../store'
+
 
 const Home: NextPage = () => {
   return (
@@ -24,37 +24,6 @@ const Home: NextPage = () => {
       </Head>
       <Sidebar />
       <Content/>
-      {/* <div className={styles.content}>
-        <div className={styles.last_tracks}>
-          <div className={styles.title}>
-            <h1>Good evening</h1>
-            <h1>Last tracks</h1>
-          </div>
-          <div className={styles.track_card}>song</div>
-          <div className={styles.track_card}>song</div>
-          <div className={styles.track_card}>song</div>
-          <div className={styles.track_card}>song</div>
-          <div className={styles.track_card}>song</div>
-          <div className={styles.track_card}>song</div>
-          <div className={styles.track_card}>song</div>
-          <div className={styles.track_card}>song</div>
-          <div className={styles.track_card}>song</div>
-        </div>
-        <div className={styles.playlists}>
-          <div className={styles.title}>
-            <h1>Playlists for you</h1>
-          </div>
-          <div className={styles.playlist_card}></div>
-          <div className={styles.playlist_card}></div>
-          <div className={styles.playlist_card}></div>
-          <div className={styles.playlist_card}></div>
-          <div className={styles.playlist_card}></div>
-          <div className={styles.playlist_card}></div>
-          <div className={styles.playlist_card}></div>
-          <div className={styles.playlist_card}></div>
-          <div className={styles.playlist_card}></div>
-        </div>
-      </div> */}
       <div className={styles.player}>
         <div className={styles.prewiev}></div>
         <div className={styles.play_module}>
@@ -92,9 +61,6 @@ const Home: NextPage = () => {
   );
 }
 
-// export const getStaticProps = wrapper.getStaticProps((store) => () => {
-//   store.dispatch(incrementCounter())
-// })
 
 export default Home
 

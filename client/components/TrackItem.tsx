@@ -23,6 +23,7 @@ const TrackItem: React.FC<TrackItemProps> = ({track}) => {
     if(!pause)
       pauseTrack()
   }
+  
   const router = useRouter()
     return (
       <div 

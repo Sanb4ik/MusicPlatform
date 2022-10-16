@@ -17,6 +17,7 @@ import { useTypedSelector } from '../hooks/useTypedSelector';
 import { useActions } from '../hooks/useActions';
 import { chainPropTypes } from '@mui/utils';
 import { ConstructionOutlined } from '@mui/icons-material';
+import { info } from 'console';
 
 var audio: object;
 
@@ -27,6 +28,7 @@ const Player = () => {
 
   useEffect(() => {
     console.log('Player constructor');
+    // console.log)
     if(!audio){
       audio = new Audio()
     }
@@ -36,6 +38,10 @@ const Player = () => {
     }
 },[active, duration])
 
+const {tracks, error} = useTypedSelector(state => state.track)
+if(error){
+  return null;
+}
 
 const setAudio = () => {
   if(active){
@@ -77,11 +83,52 @@ const play  = () => {
     console.log(time)
     audio.currentTime = time
     setCurrentTime(time)
-    // console.log(currentTime)
   }
+
+  const [tr_index, setTrIndex] = useState(1 ) 
+
+  const getRandIndex =()=>{
+    return Math.floor(Math.random() * tracks.length)
+  }
+
+  const getNextIndex =()=>{
+    setTrIndex(tr_index+1)
+
+    if(tr_index == tracks.length-1)
+      setTrIndex(0)
+
+    return tr_index
+  }
+
+  const getPreviousIndex =()=>{
+    setTrIndex(tr_index-1)
+
+    if(tr_index == 0)
+      setTrIndex(tracks.length - 1)
+
+    return tr_index
+  }
+
+  const skipNext = () => {
+    console.log("skipNext")
+    getNextIndex()
+    setActiveTrack(tracks[tr_index])
+  }
+
+  const skipPrevious = () => {
+    getPreviousIndex()
+
+    setActiveTrack(tracks[tr_index])
+  }
+
+  useEffect(()=>{
+    if(currentTime == duration-1)
+      skipNext()
+  },[currentTime])
 
   if(active == null)
     return null
+
     
     return (
       <div className={styles.player}>
@@ -96,12 +143,12 @@ const play  = () => {
         </div>
         <div className={styles.play_module}>
           <div className={styles.module_btns}>
-            <SkipPreviousIcon className={styles.skip_back} />
+            <SkipPreviousIcon onClick={skipPrevious} className={styles.skip_back} />
             {pause 
               ? <PauseCircleIcon onClick={play} className={styles.pause} />
               : <PlayCircleIcon onClick={play} className={styles.pause} />
             }
-            <SkipNextIcon className={styles.skip_next} />
+            <SkipNextIcon onClick={skipNext} className={styles.skip_next} />
           </div>
           <TrackProgress left={currentTime} right={duration} onChange={changeCurrentTime}></TrackProgress>
           <div className={styles.smart_pause}>
