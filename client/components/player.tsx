@@ -16,15 +16,17 @@ import TrackProgress from './TrackProgress';
 import { useTypedSelector } from '../hooks/useTypedSelector';
 import { useActions } from '../hooks/useActions';
 import { chainPropTypes } from '@mui/utils';
+import { ConstructionOutlined } from '@mui/icons-material';
 
 var audio: object;
 
 const Player = () => {
-
+  
   const{pause, volume, active, duration, currentTime} = useTypedSelector(state=> state.player)
   const {pauseTrack, playTrack, setVolume, setCurrentTime, setDuration, setActiveTrack} = useActions()
 
   useEffect(() => {
+    console.log('Player constructor');
     if(!audio){
       audio = new Audio()
     }

@@ -14,7 +14,7 @@ const TrackPreviev = () => {
         <div>
           <div>
             <picture>
-              <img src={track.picture} />
+              <img src= {'http://localhost:3333/'+track.picture}/>
             </picture>
           </div>
           <div style={{ marginLeft: "10px" }}>

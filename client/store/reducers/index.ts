@@ -12,13 +12,22 @@ const rootReducer = combineReducers({
 export const reducer = (state, action) => {
     switch (action.type) {
       case HYDRATE:
+        console.log(state)
+        const nextState = {
+          ...state, // use previous state
         
-        // const stateDiff = diff(state, action.payload) as any;
-        // const wasBumpedOnClient = stateDiff?.page?.[0]?.endsWith('X'); // or any other criteria
-        
+          ...action.payload, // apply delta from hydration
+        };
+        if (state.player.active){
+          nextState.player.active= state.player.active;
+          nextState.player.currentTime = state.player.currentTime
+          nextState.player.duration = state.player.duration
+        }
+          // preserve count value on client side navigation
         return {...state, ...action.payload};// Attention! This will overwrite client state! Real apps should use proper reconciliation.
+
       case 'TICK':
-        return {...state, tick: action.payload};
+        return {...nextState, tick: action.payload};
       default:
         return rootReducer(state, action);
     }
