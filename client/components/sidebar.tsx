@@ -3,13 +3,19 @@ import styles from '../styles/Home.module.css'
 import SearchIcon from '@mui/icons-material/Search';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import HomeIcon from '@mui/icons-material/Home';
+import AllInclusiveIcon from '@mui/icons-material/AllInclusive';
+import NoteAddIcon from '@mui/icons-material/NoteAdd';
 import {useRouter} from 'next/router';
 
 const Sidebar = () => {
   const router = useRouter()
 
-  const toAllTraks =()=>{
+  const GotoAllTraks =()=>{
     router.push('/tracks/all')
+  }
+
+  const GotoCreateTraks =()=>{
+    router.push('/tracks/create')
   }
 
     return (
@@ -18,10 +24,11 @@ const Sidebar = () => {
           <h1>Music</h1>
         </div>
         <div className={styles.buttons}>
-          <HomeIcon className={styles.icon}></HomeIcon><p className={styles.description}>Home</p>
-          <SearchIcon className={styles.icon}></SearchIcon><p className={styles.description}>Search</p>
-          <FavoriteIcon className={styles.icon}></FavoriteIcon><p className={styles.description}>Liked Songs</p>
-          <FavoriteIcon onClick={toAllTraks} className={styles.icon}></FavoriteIcon><p className={styles.description} >All</p>
+          <HomeIcon className={styles.icon}/><p className={styles.description}>Home</p>
+          <SearchIcon className={styles.icon}/><p className={styles.description}>Search</p>
+          <FavoriteIcon className={styles.icon}/><p className={styles.description}>Liked Songs</p>
+          <AllInclusiveIcon onClick={GotoAllTraks} className={styles.icon}/><p className={styles.description} >All</p>
+          <NoteAddIcon onClick={GotoCreateTraks} className={styles.icon}/><p className={styles.description} >Create</p>
         </div>
       </div>
     );

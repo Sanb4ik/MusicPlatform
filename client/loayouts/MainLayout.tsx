@@ -1,6 +1,7 @@
 import React from 'react';
 import Player from "../components/Player";
 import Head from "next/head";
+import Sidebar from '../components/sidebar';
 
 interface MainLayoutProps {
     title?: string;
@@ -28,6 +29,7 @@ const MainLayout: React.FC<MainLayoutProps>
             <div>
                 {children}
             </div>
+            {/* <Sidebar/> */}
             <Player/>
         </>
     );

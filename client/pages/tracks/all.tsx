@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useState} from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -9,44 +9,32 @@ import Paper from '@mui/material/Paper';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { NextThunkDispatch, wrapper } from '../../store'
 import { fetchTracks } from '../../store/action-creators/track'
-// import TrackList from '../../components/TrackList'
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 import styles from '../../styles/Home.module.css'
+import TrackTable from '../../components/TrackTable';
+import { green } from '@mui/material/colors';
 
 
 export default function AllTracksTable() {
     const {tracks, error} = useTypedSelector(state => state.track)
 
-    console.log(tracks.length, tracks, error);
+ 
 
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+      <Table sx={{ minWidth: 650}} aria-label="a dense table">
         <TableHead>
           <TableRow>
-            <TableCell>Name</TableCell>
-            <TableCell align="right">Artist</TableCell>
-            <TableCell align="right">Listens</TableCell>
+            <TableCell align="left">Image</TableCell>
+            <TableCell align="left">Name</TableCell>
+            <TableCell align="left">Listens</TableCell>
+            <TableCell align="left">Like</TableCell>
           </TableRow>
         </TableHead>
-        <TableBody>
-          {tracks.map((track) => (
-            <TableRow
-              key={track.name}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              
-              <TableCell align="left">
-                <picture >
-                    <img src={'http://localhost:3333/'+track.picture} className={styles.track_card_img} />
-                </picture>
-              </TableCell>
-              <TableCell align="left">{track.name}  {track.artist}</TableCell>
-              <TableCell align="left">{track.listens}</TableCell>
-            </TableRow>
-          ))}
-          {/* <TrackList tracks={tracks}/> */}
-        </TableBody>
+        <TrackTable tracks={tracks}>
+        </TrackTable>
       </Table>
     </TableContainer>
   );

@@ -9,7 +9,6 @@ import { useTypedSelector } from '../hooks/useTypedSelector';
 
 interface TrackItemProps {
     track: ITrack;
-    // active?: boolean;
 }
 
 const TrackItem: React.FC<TrackItemProps> = ({track}) => {

@@ -85,6 +85,8 @@
   color:white;
   background-color: var( --second-bg-color);
   min-height: 10vh;
+  position: sticky;
+  bottom: 0;
 }
 .prewiev{
   /* background-color: rgb(246, 241, 241); */
