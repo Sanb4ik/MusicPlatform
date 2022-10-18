@@ -2,10 +2,10 @@
   padding: 0 0;
   background-color:rgb(162, 218, 255);
   display: grid;
-  grid-template-areas: 'sidebar content'
-                       'player player';
+  grid-template-areas: 'sidebar content';
+ 
   grid-template-columns: 20% 80%;
-  min-height: 100vh;
+  min-height: 85vh;
 }
 
 /* -------------------CONTENT -------------------- */
@@ -84,6 +84,7 @@
   grid-area: player;
   color:white;
   background-color: var( --second-bg-color);
+  min-height: 10vh;
 }
 .prewiev{
   /* background-color: rgb(246, 241, 241); */

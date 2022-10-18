@@ -19,6 +19,7 @@ const Index = () => {
   const router = useRouter()
 
   const {tracks, error} = useTypedSelector(state => state.track)
+  console.log(tracks.length, 'tracks')
   if(error){
     return null;
   }

@@ -7,6 +7,11 @@ import {useRouter} from 'next/router';
 
 const Sidebar = () => {
   const router = useRouter()
+
+  const toAllTraks =()=>{
+    router.push('/tracks/all')
+  }
+
     return (
         <div className={styles.sidebar}>
         <div className={styles.name}>
@@ -14,8 +19,9 @@ const Sidebar = () => {
         </div>
         <div className={styles.buttons}>
           <HomeIcon className={styles.icon}></HomeIcon><p className={styles.description}>Home</p>
-          <SearchIcon className={styles.icon}>Search</SearchIcon><p className={styles.description}>Search</p>
-          <FavoriteIcon className={styles.icon}>Liked </FavoriteIcon><p className={styles.description}>Liked Songs</p>
+          <SearchIcon className={styles.icon}></SearchIcon><p className={styles.description}>Search</p>
+          <FavoriteIcon className={styles.icon}></FavoriteIcon><p className={styles.description}>Liked Songs</p>
+          <FavoriteIcon onClick={toAllTraks} className={styles.icon}></FavoriteIcon><p className={styles.description} >All</p>
         </div>
       </div>
     );
