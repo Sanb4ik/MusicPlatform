@@ -34,7 +34,7 @@ const TrackRow: React.FC<TrackRowProps> = ({track}) => {
   }
     return (
         <>
-            <TableCell align="left" onClick={playThisTrack}>
+            <TableCell  align="left" onClick={playThisTrack}>
                 <picture >
                     <img src={'http://localhost:3333/'+track.picture} className={styles.track_card_img} />
                 </picture>
@@ -46,11 +46,11 @@ const TrackRow: React.FC<TrackRowProps> = ({track}) => {
               <TableCell align="left">{track.listens}</TableCell>
               <TableCell align="left"> 
                 {like ?
-                    <FavoriteBorderIcon onClick ={Liked}/>
-                    :
                     <FavoriteIcon onClick ={Liked}/>
+                    :
+                    <FavoriteBorderIcon onClick ={Liked}/>
                 }
-              </TableCell>
+            </TableCell>
         </>
     );
 };

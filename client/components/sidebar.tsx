@@ -18,19 +18,23 @@ const Sidebar = () => {
     router.push('/tracks/create')
   }
 
+  const GotoHomePage =()=>{
+    router.push('/tracks')
+  }
+
     return (
-        <div className={styles.sidebar}>
+        <>
         <div className={styles.name}>
           <h1>Music</h1>
         </div>
         <div className={styles.buttons}>
-          <HomeIcon className={styles.icon}/><p className={styles.description}>Home</p>
+          <HomeIcon onClick={GotoHomePage} className={styles.icon}/><p className={styles.description}>Home</p>
           <SearchIcon className={styles.icon}/><p className={styles.description}>Search</p>
           <FavoriteIcon className={styles.icon}/><p className={styles.description}>Liked Songs</p>
           <AllInclusiveIcon onClick={GotoAllTraks} className={styles.icon}/><p className={styles.description} >All</p>
           <NoteAddIcon onClick={GotoCreateTraks} className={styles.icon}/><p className={styles.description} >Create</p>
         </div>
-      </div>
+      </>
     );
 };
 

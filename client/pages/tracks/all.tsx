@@ -9,22 +9,14 @@ import Paper from '@mui/material/Paper';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { NextThunkDispatch, wrapper } from '../../store'
 import { fetchTracks } from '../../store/action-creators/track'
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-
-import styles from '../../styles/Home.module.css'
 import TrackTable from '../../components/TrackTable';
-import { green } from '@mui/material/colors';
-
 
 export default function AllTracksTable() {
     const {tracks, error} = useTypedSelector(state => state.track)
 
- 
-
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650}} aria-label="a dense table">
+      <Table sx={{ minWidth: 300}} aria-label="a dense table">
         <TableHead>
           <TableRow>
             <TableCell align="left">Image</TableCell>

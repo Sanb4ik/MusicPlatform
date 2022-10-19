@@ -2,7 +2,8 @@
   "dependencies": {
     "@nestjs/mongoose": "^9.2.0",
     "dotenv": "^16.0.2",
-    "mongoose": "^6.5.4"
+    "mongoose": "^6.5.4",
+    "sass": "^1.55.0"
   },
   "devDependencies": {
     "@types/mongoose": "^5.11.97"

@@ -1,0 +1,65 @@
+.container {
+  display: flex;
+  min-height: calc(100vh - 90px);
+}
+
+.sidebar {
+  background: blue;
+  min-width: 250px;
+  max-height: calc(100vh - 90px);
+}
+
+.music_content {
+  background: lightblue;
+  flex-grow: 1;
+  flex-shrink: 1;
+  max-width: calc(100% - 250px);
+  max-height: calc(100vh - 90px);
+  overflow: scroll;
+}
+
+.player {
+  min-height: 90px;
+  background-color: yellow;
+  position: fixed;
+  bottom: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .sidebar {
+    min-width: 200px;
+  }
+  .music_content {
+    max-width: calc(100% - 200px);
+  }
+}
+@media screen and (max-width: 568px) {
+  .sidebar {
+    min-width: 180px;
+  }
+  .music_content {
+    max-width: calc(100% - 180px);
+  }
+  .player {
+    min-height: 80px;
+  }
+  .container {
+    min-height: calc(100vh - 80px);
+  }
+}
+@media screen and (max-width: 500px) {
+  .sidebar {
+    height: 50px;
+    order: 2;
+  }
+  .music_content {
+    max-width: calc(100% - 0px);
+  }
+  .player {
+    min-height: 70px;
+  }
+  .container {
+    min-height: calc(100vh - 70px);
+    flex-direction: column;
+  }
+}/*# sourceMappingURL=layout.module.css.map */
