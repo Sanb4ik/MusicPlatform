@@ -16,7 +16,7 @@ const Create = () => {
     const text = useInput('')
     const router = useRouter()
 
-    console.log(name.value, artist.value, text.value, "!!!!!!!!!!!!")
+    // console.log(name.value, artist.value, text.value, "!!!!!!!!!!!!")
 
 
     const next = () => {

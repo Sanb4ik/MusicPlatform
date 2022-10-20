@@ -12,7 +12,7 @@ export class TracksService {
               private fileService: FileService) {
   }
 
-  async getAll(count= 10, offset = 0){
+  async getAll(count= 100, offset = 0){
     return this.trackModel.find().skip(offset).limit(count);
   }
 

@@ -23,7 +23,7 @@ const Sidebar = () => {
   }
 
     return (
-        <>
+        <div className={styles.sidebar}>
         <div className={styles.name}>
           <h1>Music</h1>
         </div>
@@ -34,7 +34,7 @@ const Sidebar = () => {
           <AllInclusiveIcon onClick={GotoAllTraks} className={styles.icon}/><p className={styles.description} >All</p>
           <NoteAddIcon onClick={GotoCreateTraks} className={styles.icon}/><p className={styles.description} >Create</p>
         </div>
-      </>
+      </div>
     );
 };
 

@@ -10,7 +10,7 @@ interface TrackTableProps{
 
 const TrackTable : React.FC<TrackTableProps> = ({tracks}) => {
     return (
-        <TableBody sx ={{ backgroundColor: "#616161"}}>
+        <TableBody sx ={{ backgroundColor: "#4fc3f7"}}>
           {tracks.map((track) => (
             <TableRow
               key={track.name}

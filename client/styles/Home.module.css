@@ -2,7 +2,7 @@
   padding: 0 0;
   background-color:rgb(162, 218, 255);
   display: grid;
-  grid-template-areas: 'sidebar content';
+  grid-template-areas: 'content content';
  
   grid-template-columns: 20% 80%;
   min-height: 85vh;

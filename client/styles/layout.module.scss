@@ -7,13 +7,13 @@ $sidebar_w: 250px;
 }
 
 .sidebar{
-    background: blue;
+    // background: blue;
     min-width: $sidebar_w;
     max-height: calc(100vh - $player_h);
 }
 
 .music_content{
-    background: lightblue;
+    // background: lightblue;
     flex-grow: 1;
     flex-shrink: 1;
     max-width: calc(100% - $sidebar_w);
@@ -43,6 +43,7 @@ $sidebar_w: 250px;
     $sidebar_w: 180px;
     .sidebar{
         min-width: $sidebar_w;
+        max-height: calc(100vh - $player_h);
     }
     .music_content{
         max-width: calc(100% - $sidebar_w);
@@ -55,7 +56,7 @@ $sidebar_w: 250px;
     }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 300px) {
     $player_h: 70px;
     $sidebar_w: 0px;
     .sidebar{

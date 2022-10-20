@@ -4,13 +4,11 @@
 }
 
 .sidebar {
-  background: blue;
   min-width: 250px;
   max-height: calc(100vh - 90px);
 }
 
 .music_content {
-  background: lightblue;
   flex-grow: 1;
   flex-shrink: 1;
   max-width: calc(100% - 250px);
@@ -36,6 +34,7 @@
 @media screen and (max-width: 568px) {
   .sidebar {
     min-width: 180px;
+    max-height: calc(100vh - 80px);
   }
   .music_content {
     max-width: calc(100% - 180px);
@@ -47,7 +46,7 @@
     min-height: calc(100vh - 80px);
   }
 }
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 300px) {
   .sidebar {
     height: 50px;
     order: 2;
