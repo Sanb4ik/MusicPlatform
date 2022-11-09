@@ -44,8 +44,8 @@ export class TracksService {
     return this.trackModel.findByIdAndRemove(id)
   }
 
-  async update(id: string, productDto: CreateTrackDto): Promise<Track> {
-    return this.trackModel.findByIdAndUpdate(id, productDto, {new: true})
+  async update(id: string, trackDto: CreateTrackDto): Promise<Track> {
+    return this.trackModel.findByIdAndUpdate(id, trackDto, {new: true})
   }
 
   async listen(id: mongoose.ObjectId){

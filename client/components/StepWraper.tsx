@@ -9,7 +9,7 @@ const steps = ['Информация о треке', 'Загрузите обл�
 
 const StepWrapper: React.FC<StepWrapperProps> = ({activeStep, children}) => {
     return (
-        <Container>
+        <>
             <Stepper activeStep={activeStep}>
                 {steps.map((step, index) =>
                     <Step
@@ -17,7 +17,7 @@ const StepWrapper: React.FC<StepWrapperProps> = ({activeStep, children}) => {
                         completed={activeStep > index}
                     >
                         <StepLabel>{step}</StepLabel>
-                    </Step>
+                    </Step>         
                 )}
             </Stepper>
             <Grid container justifyContent="center" style={{margin: '70px 0 ', height: 270}}>
@@ -25,7 +25,7 @@ const StepWrapper: React.FC<StepWrapperProps> = ({activeStep, children}) => {
                     {children}
                 </Card>
             </Grid>
-        </Container>
+        </>
     );
 };
 
